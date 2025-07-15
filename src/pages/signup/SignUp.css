@@ -1,0 +1,27 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Sign Up form */
+#signup-form {
+  max-width: 440px;
+}
+
+#signup-form:hover {
+  transition: ease-in-out 0.3s;
+  box-shadow: 4px 4px 16px 0 rgba(119, 73, 248, 0.2) !important;
+}
+
+.form-check-input:checked {
+  background-color: #7749f8 !important;
+  border-color: #7749f8 !important;
+}
+
+/* Checkbox */
+.form-check-input:checked:hover,
+.form-check-input:checked:focus {
+  background-color: #7749f8 !important;
+  border-color: #7749f8 !important;
+}

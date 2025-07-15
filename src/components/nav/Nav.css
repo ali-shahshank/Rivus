@@ -1,0 +1,12 @@
+/* Offcanvas */
+.offcanvas {
+  background-color: var(--primary-background) !important;
+  color: white !important;
+  transition: ease-in-out 0.3s !important;
+  transform: scale(00.25rem) !important;
+}
+
+.offcanvas ul li:hover {
+  background-color: var(--hover-state) !important;
+  transition: ease-in-out 0.3s;
+}

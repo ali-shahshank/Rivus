@@ -1,0 +1,136 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--primary-background) !important;
+}
+
+#cards-wrapper {
+  scroll-behavior: smooth;
+  scrollbar-width: none; /* Firefox */
+  /* background-color: transparent !important; */
+}
+
+#cards-wrapper::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+.card {
+  width: 360px;
+  height: 240px;
+  border-radius: 8px;
+  border: none !important;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  background-color: transparent !important;
+  /* background-color: var(--primary-background) !important; */
+  box-shadow: var(--bs-box-shadow-lg) !important;
+}
+
+.card-image {
+  height: 80%; /* 192px (80% of 240px) */
+  width: 100%;
+  box-shadow: var(--bs-box-shadow-lg);
+}
+
+.card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 8px;
+}
+
+.card-text {
+  height: 20%; /* 48px (20% of 240px) */
+  padding: 12px 0px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Vertically centers text */
+  align-items: flex-start;
+}
+
+.card-title {
+  color: white !important;
+  font-size: 16px;
+  font-weight: 500;
+  margin-top: 0px; /* Removes default margins */
+  line-height: 1; /* Tighter spacing */
+}
+
+.card-year {
+  font-size: 14px;
+  color: grey;
+  margin: 0;
+  padding: 0;
+  line-height: 1;
+  width: 100%;
+}
+/* extra small screens */
+@media (min-width: 328px) and (max-width: 575.98px) {
+  .card {
+    height: 18px;
+    max-width: 270px;
+  }
+  .card-title {
+    font-size: 14px;
+  }
+  .card-text {
+    font-size: 12px;
+  }
+}
+
+/* small screens */
+@media (min-width: 576px) and (max-width: 767.98px) {
+  .card {
+    height: 220px;
+    max-width: 320px;
+  }
+}
+
+/* medium screens */
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .card {
+    height: 240px;
+    max-width: 360px;
+  }
+}
+
+/* large screens */
+@media (min-width: 992px) and (max-width: 1199.98px) {
+  .card {
+    height: 240px;
+    max-width: 360px;
+  }
+}
+
+/* extra large devices */
+@media (min-width: 1200px) {
+  .card {
+    height: 300px;
+    max-width: 450px;
+  }
+}
+
+/* Optional - 4K/Ultra-wide (1600px+) */
+@media (min-width: 1600px) {
+  .card {
+    height: 300px;
+    max-width: 450px;
+  }
+}
+
+/* High DPI displays (Retina, etc.) */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .card-title {
+    font-weight: 500 !important;
+  }
+}
+
+/* Landscape orientation adjustments for mobile */
+@media (max-width: 767px) and (orientation: landscape) {
+}

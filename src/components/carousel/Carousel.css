@@ -1,0 +1,302 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+#mainCarousel {
+}
+
+.carousel-inner {
+  height: 480px;
+  width: 100%;
+  position: relative;
+}
+
+.carousel-caption {
+  position: absolute;
+  top: 0% !important;
+  left: 0% !important;
+  width: 40%;
+  height: 100%;
+  color: #fff;
+  text-align: center;
+  padding: 40px 40px;
+  background: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0.724) 0%,
+    rgba(0, 0, 0, 0.3) 70%,
+    rgba(0, 0, 0, 0) 100%
+  ) !important;
+}
+
+.carousel-caption h3 {
+  width: 100%;
+}
+
+.carousel-caption p {
+}
+
+.carousel-control-prev {
+}
+
+.carousel-control-next {
+}
+
+@media (min-width: 0px) and (max-width: 575.98px) {
+  .carousel-inner {
+    max-height: 250px;
+    min-width: 100%;
+  }
+  .carousel-caption {
+    position: absolute !important;
+    height: 100% !important;
+    width: 60% !important;
+    padding: 16px !important;
+    top: 0% !important;
+    left: 0;
+    z-index: 999 !important;
+    background: linear-gradient(
+      to right,
+      rgba(0, 0, 0, 0.724) 0%,
+      rgba(0, 0, 0, 0.3) 70%,
+      rgba(0, 0, 0, 0) 100%
+    ) !important;
+  }
+  .carousel-caption h2 {
+    font-size: 22px !important;
+  }
+  .carousel-caption h5 {
+    font-size: 16px !important;
+    font-weight: 400 !important;
+    line-height: 1;
+  }
+  .carousel-caption p {
+    display: none !important;
+  }
+  .carousel-caption a {
+    display: none !important;
+  }
+}
+
+@media (min-width: 576px) and (max-width: 767.98px) {
+  .carousel-inner {
+    max-height: 360px !important;
+    min-width: 100%;
+  }
+  .carousel-caption {
+    position: absolute !important;
+    height: 100% !important;
+    width: 52% !important;
+    padding: 16px !important;
+    top: 0% !important;
+    left: 0;
+    z-index: 999 !important;
+    background: linear-gradient(
+      to right,
+      rgba(0, 0, 0, 0.675) 0%,
+      rgba(0, 0, 0, 0.3) 70%,
+      rgba(0, 0, 0, 0) 100%
+    ) !important;
+  }
+  .carousel-caption h2 {
+    font-size: 40px !important;
+  }
+  .carousel-caption h5 {
+    font-size: 18px !important;
+    font-weight: 400 !important;
+    line-height: 1;
+  }
+  .carousel-caption p {
+    display: none !important;
+    width: 100%;
+  }
+  .carousel-caption a {
+    display: none !important;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .carousel-inner {
+    max-height: 410px !important;
+    min-width: 100%;
+  }
+
+  .carousel-caption {
+    position: absolute !important;
+    height: 100% !important;
+    width: 40% !important;
+    padding: 24px !important;
+    top: 0% !important;
+    left: 0;
+    z-index: 999 !important;
+    background: linear-gradient(
+      to right,
+      rgba(0, 0, 0, 0.724) 0%,
+      rgba(0, 0, 0, 0.3) 70%,
+      rgba(0, 0, 0, 0) 100%
+    ) !important;
+  }
+  .carousel-caption h2 {
+    font-size: 32px !important;
+  }
+  .carousel-caption h5 {
+    font-size: 18px !important;
+    font-weight: 400 !important;
+    line-height: 1;
+  }
+  .carousel-caption p {
+    display: block !important;
+    width: 100%;
+    font: 16px;
+  }
+  .carousel-caption a {
+    display: block !important;
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1199.98px) {
+  .carousel-inner {
+    max-height: 524px !important;
+    min-width: 100%;
+  }
+  .carousel-caption {
+    position: absolute !important;
+    height: 100% !important;
+    width: 40% !important;
+    padding: 24px !important;
+    top: 0% !important;
+    left: 0;
+    z-index: 999 !important;
+    background: linear-gradient(
+      to right,
+      rgba(0, 0, 0, 0.691) 0%,
+      rgba(0, 0, 0, 0.3) 70%,
+      rgba(0, 0, 0, 0) 100%
+    ) !important;
+  }
+  .carousel-caption h2 {
+    font-size: 40px !important;
+  }
+  .carousel-caption h5 {
+    font-size: 20px !important;
+    font-weight: 400 !important;
+  }
+  .carousel-caption p {
+    display: block !important;
+    text-overflow: scroll;
+    width: 100%;
+    font: 16px;
+  }
+  .carousel-caption a {
+    display: block !important;
+  }
+}
+
+@media (min-width: 1200px) and (max-width: 1399.98px) {
+  .carousel-inner {
+    max-height: 600px !important;
+    min-width: 100%;
+  }
+  .carousel-caption {
+    position: absolute !important;
+    height: 100% !important;
+    width: 40% !important;
+    padding: 40px !important;
+    top: 0% !important;
+    left: 0;
+    z-index: 999 !important;
+    overflow-y: scroll;
+  }
+  .carousel-caption h2 {
+    font-size: 40px !important;
+  }
+  .carousel-caption h5 {
+    font-size: 20px !important;
+    font-weight: 400 !important;
+  }
+  .carousel-caption p {
+    display: block !important;
+    text-overflow: scroll;
+    width: 100%;
+    font: 16px;
+  }
+  .carousel-caption a {
+    display: block !important;
+  }
+}
+
+@media (min-width: 1400px) {
+  .carousel-inner {
+    max-height: 600px !important;
+    min-width: 100%;
+  }
+  .carousel-caption {
+    position: absolute !important;
+    height: 100% !important;
+    width: 40% !important;
+    padding: 40px !important;
+    top: 0% !important;
+    left: 0;
+    z-index: 999 !important;
+    background: linear-gradient(
+      to right,
+      rgba(0, 0, 0, 0.913) 0%,
+      rgba(0, 0, 0, 0.3) 70%,
+      rgba(0, 0, 0, 0) 100%
+    ) !important;
+  }
+  .carousel-caption h2 {
+    font-size: 40px !important;
+  }
+  .carousel-caption h5 {
+    font-size: 20px !important;
+    font-weight: 400 !important;
+  }
+  .carousel-caption p {
+    display: block !important;
+    text-overflow: scroll;
+    width: 100%;
+    font: 16px;
+  }
+  .carousel-caption a {
+    display: block !important;
+  }
+}
+
+@media (min-width: 1600px) {
+  .carousel-inner {
+    max-height: 600px !important;
+    min-width: 100%;
+  }
+  .carousel-caption {
+    position: absolute !important;
+    height: 100% !important;
+    width: 40% !important;
+    padding: 40px !important;
+    top: 0% !important;
+    left: 0;
+    z-index: 999 !important;
+    background: linear-gradient(
+      to right,
+      rgba(0, 0, 0, 0.913) 0%,
+      rgba(0, 0, 0, 0.3) 70%,
+      rgba(0, 0, 0, 0) 100%
+    ) !important;
+  }
+  .carousel-caption h2 {
+    font-size: 40px !important;
+  }
+  .carousel-caption h5 {
+    font-size: 20px !important;
+    font-weight: 400 !important;
+  }
+  .carousel-caption p {
+    display: block !important;
+    text-overflow: scroll;
+    width: 100%;
+    font: 16px !important;
+  }
+  .carousel-caption a {
+    display: block !important;
+  }
+}
