@@ -73,25 +73,43 @@ const Nav = () => {
           <div className="collapse navbar-collapse">
             <ul className="navbar-nav ">
               <li className="nav-item text-light">
-                <Link to="/movies" className="nav-link">
-                  Movies
-                </Link>
+                <a
+                  href="https://www.themoviedb.org/"
+                  className="nav-link"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  TMDB
+                </a>
               </li>
               <li className="nav-item text-light">
-                <Link to="/series" className="nav-link">
-                  Series
-                </Link>
+                <a
+                  href="https://www.rottentomatoes.com/"
+                  target="_blank"
+                  className="nav-link"
+                  rel="noopener noreferrer"
+                >
+                  Rotten Tomatoes
+                </a>
               </li>
 
               <li className="nav-item text-light">
-                <Link to="/new" className="nav-link">
-                  New Releases
-                </Link>
+                <a
+                  href="https://www.imdb.com/"
+                  className="nav-link"
+                  target="_blank"
+                >
+                  IMDB
+                </a>
               </li>
               <li className="nav-item text-light">
-                <Link to="/Player" className="nav-link">
-                  Player
-                </Link>
+                <a
+                  href="https://www.metacritic.com/"
+                  target="_blank"
+                  className="nav-link"
+                >
+                  Metacritics
+                </a>
               </li>
             </ul>
             <ul className="navbar-nav d-flex justify-content-center align-items-center gap-2 ms-auto ">
