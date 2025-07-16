@@ -1,10 +1,56 @@
-import { Link, useNavigate } from "react-router-dom";
 import "./Nav.css";
 import "../../index.css";
+import { Link, useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { onAuthStateChanged } from "firebase/auth";
+import { auth, handleSignOut } from "../../firebase";
+import { toast } from "react-toastify";
 
 const Nav = () => {
   // Navigate
   const navigate = useNavigate();
+
+  // State Variables
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
+      setLoading(false);
+    });
+
+    return () => unsubscribe();
+  }, []);
+
+  const handleLogout = async () => {
+    try {
+      await handleSignOut();
+      toast.success("Account Logged Out");
+      navigate("/SignIn");
+    } catch (error) {
+      setError(error);
+      toast.error("Logout failed");
+    }
+  };
+
+  // handle loading
+  if (loading) {
+    return (
+      <div className="d-flex justify-content-center align-items-center h-100">
+        <div className="spinner-border text-primary" role="status">
+          <span className="visually-hidden">Loading...</span>
+        </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    toast.error(error);
+    console.log(error.message);
+  }
+
   return (
     <>
       <nav className="navbar navbar-dark navbar-expand-md p-2 p-md-4">
@@ -49,24 +95,32 @@ const Nav = () => {
               </li>
             </ul>
             <ul className="navbar-nav d-flex justify-content-center align-items-center gap-2 ms-auto ">
-              <li className="nav-item">
-                <button
-                  className="btn btn-outline-light"
-                  onClick={() => {
-                    navigate("/SignIn");
-                  }}
-                >
-                  Sign In
-                </button>
-              </li>
-              <li className="nav-item">
-                <button
-                  className="btn-purple"
-                  onClick={() => navigate("/SignUp")}
-                >
-                  Try Now
-                </button>
-              </li>
+              {user ? (
+                <li className="nav-item">
+                  <button className="btn-purple w-100" onClick={handleLogout}>
+                    Logout
+                  </button>
+                </li>
+              ) : (
+                <>
+                  <li className="nav-item">
+                    <button
+                      className="btn btn-outline-light"
+                      onClick={() => navigate("/SignIn")}
+                    >
+                      Sign In
+                    </button>
+                  </li>
+                  <li className="nav-item">
+                    <button
+                      className="btn-purple"
+                      onClick={() => navigate("/SignUp")}
+                    >
+                      Try Now
+                    </button>
+                  </li>
+                </>
+              )}
             </ul>
           </div>
         </div>
@@ -89,38 +143,54 @@ const Nav = () => {
         <div className="offcanvas-body d-flex flex-column justify-content-between ">
           <ul className="list-unstyled">
             <li className="nav-item p-2">
-              <a href="" className="nav-link">
+              <Link to="/movies" className="nav-link">
                 Movies
-              </a>
+              </Link>
             </li>
             <li className="nav-item p-2">
-              <a href="" className="nav-link">
+              <Link to="/series" className="nav-link">
                 Series
-              </a>
+              </Link>
             </li>
             <li className="nav-item p-2">
-              <a href="" className="nav-link">
+              <Link to="/new" className="nav-link">
                 New Releases
-              </a>
+              </Link>
             </li>
             <li className="nav-item p-2">
-              <a href="" className="nav-link">
-                Documentaries
-              </a>
-            </li>
-            <li className="nav-item p-2">
-              <a href="" className="nav-link">
-                Watch-list
-              </a>
+              <Link to="/Player" className="nav-link">
+                Player
+              </Link>
             </li>
           </ul>
+
           <ul className="list-unstyled">
-            <li className="nav-item py-2">
-              <button className="btn btn-light w-100">Sign-In</button>
-            </li>
-            <li className="nav-item py-2">
-              <button className="btn-purple w-100">Try Now</button>
-            </li>
+            {user ? (
+              <li className="nav-item py-2">
+                <button className="btn-purple w-100" onClick={handleLogout}>
+                  Logout
+                </button>
+              </li>
+            ) : (
+              <>
+                <li className="nav-item py-2">
+                  <button
+                    className="btn btn-light w-100"
+                    onClick={() => navigate("/SignIn")}
+                  >
+                    Sign-In
+                  </button>
+                </li>
+                <li className="nav-item py-2">
+                  <button
+                    className="btn-purple w-100"
+                    onClick={() => navigate("/SignUp")}
+                  >
+                    Try Now
+                  </button>
+                </li>
+              </>
+            )}
           </ul>
         </div>
       </div>

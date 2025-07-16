@@ -5,6 +5,7 @@ import Footer from "../../components/footer/Footer";
 import "./SignUp.css";
 import { handleSignUp } from "../../firebase";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 // Primary Function
 const SignUp = () => {
@@ -22,16 +23,47 @@ const SignUp = () => {
     e.preventDefault();
     setLoading(true);
     setError("");
+
     try {
       await handleSignUp(name, email, password);
-      alert("Account Registration Successful");
+      toast.success("Account created successfully!");
+      setName("");
+      setEmail("");
+      setPassword("");
+
       setTimeout(() => {
         navigate("/");
-      }, 1000);
+      }, 1500);
     } catch (error) {
-      const alertError = error.code.replace("/auth", "").replace(/-/g, " ");
-      console.log(error.message);
-      setError(alertError);
+      let errorMessage;
+
+      switch (error.code) {
+        case "auth/email-already-in-use":
+          errorMessage = "An account with this email already exists";
+          break;
+        case "auth/weak-password":
+          errorMessage = "Password should be at least 6 characters long";
+          break;
+        case "auth/invalid-email":
+          errorMessage = "Please enter a valid email address";
+          break;
+        case "auth/network-request-failed":
+          errorMessage = "Network error. Please check your connection";
+          break;
+        case "auth/operation-not-allowed":
+          errorMessage = "Email/password accounts are not enabled";
+          break;
+        case "auth/too-many-requests":
+          errorMessage = "Too many attempts. Please try again later";
+          break;
+        default:
+          errorMessage =
+            error.message || "Registration failed. Please try again";
+      }
+
+      setError(errorMessage);
+      toast.error(errorMessage);
+      console.error("Registration Error:", error.code, error.message);
     } finally {
       setLoading(false);
     }
@@ -49,11 +81,6 @@ const SignUp = () => {
         </div>
       </div>
     );
-  }
-
-  // Handle Error
-  if (error) {
-    return <div className="alert alert-danger fade">Alert:{error}</div>;
   }
 
   return (
@@ -80,6 +107,7 @@ const SignUp = () => {
                   className="form-control"
                   id="name"
                   placeholder="name@example.com"
+                  required
                   value={name}
                   onChange={(e) => {
                     setName(e.target.value);
@@ -93,6 +121,7 @@ const SignUp = () => {
                   className="form-control"
                   id="floatingEmail"
                   placeholder="name@example.com"
+                  required
                   value={email}
                   onChange={(e) => {
                     setEmail(e.target.value);
@@ -106,6 +135,7 @@ const SignUp = () => {
                   className="form-control"
                   id="floatingPassword"
                   placeholder="Password"
+                  required
                   value={password}
                   onChange={(e) => {
                     setPassword(e.target.value);
@@ -120,6 +150,7 @@ const SignUp = () => {
                     type="checkbox"
                     value=""
                     id="checkDefault"
+                    required
                   />
                   <label
                     className="form-check-label text-light"
@@ -139,10 +170,7 @@ const SignUp = () => {
                 </div>
               </div>
               <div className="container px-0 mb-4">
-                <button
-                  className=" btn-purple  w-100"
-                  onClick={handleAccountRegistration}
-                >
+                <button className=" btn-purple  w-100" type="submit">
                   Create Account
                 </button>
               </div>
@@ -151,7 +179,7 @@ const SignUp = () => {
                   <small className="text-light ">
                     Already have an account ?
                     <Link
-                      to="/signin"
+                      to="/SignIn"
                       className="fw-bold text-decoration-underline text-light ms-1"
                     >
                       Sign In

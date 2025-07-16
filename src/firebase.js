@@ -32,11 +32,11 @@ const handleSignUp = async (name, email, password) => {
       name,
       authProvider: "local",
       email,
+      createdAt: new Date().toISOString(),
     });
+    return { success: true, user: res.user };
   } catch (error) {
-    const cleanError = error.code.replace("auth/", "").replace(/-/g, " ");
-    console.error("SignUp Error:", cleanError);
-    window.alert(cleanError);
+    throw error;
   }
 };
 
@@ -45,8 +45,7 @@ const handleLogIn = async (email, password) => {
   try {
     await signInWithEmailAndPassword(auth, email, password);
   } catch (error) {
-    const cleanError = error.code.replace("auth/", "").replace(/-/g, " ");
-    console.error("LoginUp Error:", cleanError);
+    throw error;
   }
 };
 

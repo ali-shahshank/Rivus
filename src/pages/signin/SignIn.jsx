@@ -1,10 +1,11 @@
 import Nav from "../../components/nav/Nav";
 import { Link } from "react-router-dom";
-import Footer from "../../components/footer/Footer";
 import "./SignIn.css";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { handleLogIn } from "../../firebase";
+import { toast } from "react-toastify";
+import Footer from "../../components/footer/Footer";
 
 const SignIn = () => {
   // State Variables
@@ -16,7 +17,7 @@ const SignIn = () => {
   // Navigate
   const navigate = useNavigate();
 
-  // Handle Login
+  // Account Login
   const handleAccountLogin = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -24,15 +25,47 @@ const SignIn = () => {
 
     try {
       await handleLogIn(email, password);
-      alert("Login Successful");
+      toast.success("Login successful!");
+      setEmail("");
+      setPassword("");
+
+      // Only navigate on successful login
       setTimeout(() => {
         navigate("/");
       }, 1000);
     } catch (error) {
-      const clearError = error.code.replace("/Auth", "").replace(/-/g, " ");
-      setError(clearError);
-      console.log(error);
-      alert(error.message);
+      let errorMessage;
+
+      switch (error.code) {
+        case "auth/user-not-found":
+          errorMessage = "No account found with this email address";
+          break;
+        case "auth/wrong-password":
+          errorMessage = "Incorrect password. Please try again";
+          break;
+        case "auth/invalid-email":
+          errorMessage = "Please enter a valid email address";
+          break;
+        case "auth/user-disabled":
+          errorMessage = "This account has been disabled";
+          break;
+        case "auth/too-many-requests":
+          errorMessage = "Too many failed attempts. Please try again later";
+          break;
+        case "auth/network-request-failed":
+          errorMessage = "Network error. Please check your connection";
+          break;
+        case "auth/invalid-credential":
+          errorMessage = "Invalid email or password";
+          break;
+        default:
+          errorMessage = error.message || "Login failed. Please try again";
+      }
+
+      setError(errorMessage);
+      toast.error(errorMessage);
+      console.error("Login Error:", error.code, error.message);
+      setLoading(false);
     }
   };
 
@@ -48,11 +81,6 @@ const SignIn = () => {
         </div>
       </div>
     );
-  }
-
-  // Handle Error
-  if (error) {
-    return <div className="alert alert-danger fade">Alert:{error}</div>;
   }
 
   return (
@@ -73,7 +101,7 @@ const SignIn = () => {
               <div className="container-fluid mb-4 px-0">
                 <h3 className="fs-5">Account Sign-In</h3>
                 <p className="fs-6 text-secondary">
-                  Please sign-in to your existing Revus account.
+                  Please sign-in to your existing Rivus account.
                 </p>
               </div>
 
@@ -104,10 +132,7 @@ const SignIn = () => {
                 <label htmlFor="floatingPassword">Password</label>
               </div>
               <div className="container px-0 mb-4">
-                <button
-                  className="btn-purple  w-100"
-                  onClick={handleAccountLogin}
-                >
+                <button className="btn-purple  w-100" type="submit">
                   Sign-In
                 </button>
               </div>
